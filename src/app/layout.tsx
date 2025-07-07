@@ -1,7 +1,6 @@
 import AppSidebar from '@/components/layout/app-sidebar'
 import Header from '@/components/layout/header'
-import { ThemeProvider } from '@/components/theme-provider'
-import { SidebarProvider } from '@/components/ui/sidebar'
+import { RootProvider } from '@/components/providers/root'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
@@ -15,15 +14,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
-          <SidebarProvider defaultOpen={false}>
-            <AppSidebar />
-            <div className='flex flex-1 flex-col'>
-              <Header />
-              <main className='flex flex-1 flex-col p-2'>{children}</main>
-            </div>
-          </SidebarProvider>
-        </ThemeProvider>
+        <RootProvider>
+          <AppSidebar />
+          <div className='flex flex-1 flex-col'>
+            <Header />
+            <main className='flex flex-1 flex-col p-2'>{children}</main>
+          </div>
+        </RootProvider>
       </body>
     </html>
   )
