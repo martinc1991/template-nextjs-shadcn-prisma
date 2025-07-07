@@ -1,12 +1,13 @@
+import { PageWrapper } from '@/components/layout/page-wrapper'
 import { Button } from '@/components/ui/button'
 
 export default function Home() {
   return (
-    <div>
-      <h1>Home page</h1>
+    <PageWrapper>
+      <span>Home page</span>
 
       <div className='flex gap-4'>
-        <Button asChild className='flex gap-4 items-center flex-col sm:flex-row'>
+        <Button asChild className='flex flex-col items-center gap-4 sm:flex-row'>
           <a
             href='https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app'
             target='_blank'
@@ -25,6 +26,6 @@ export default function Home() {
           </a>
         </Button>
       </div>
-    </div>
+    </PageWrapper>
   )
 }

@@ -1,3 +1,5 @@
+import { PageWrapper } from '@/components/layout/page-wrapper'
+
 export default async function AboutPage() {
-  return <div>About</div>
+  return <PageWrapper>About</PageWrapper>
 }

@@ -16,10 +16,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <SidebarProvider defaultOpen={false}>
           <AppSidebar />
-          <main className='flex-1'>
+          <div className='flex flex-1 flex-col'>
             <Header />
-            {children}
-          </main>
+            <main className='flex flex-1 flex-col bg-amber-200 p-2'>{children}</main>
+          </div>
         </SidebarProvider>
       </body>
     </html>
