@@ -1,5 +1,6 @@
 import AppSidebar from '@/components/layout/app-sidebar'
 import Header from '@/components/layout/header'
+import { ThemeProvider } from '@/components/theme-provider'
 import { SidebarProvider } from '@/components/ui/sidebar'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
@@ -12,15 +13,17 @@ export const metadata: Metadata = { title: 'Create Next App', description: 'Gene
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang='en'>
+    <html lang='en' suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <SidebarProvider defaultOpen={false}>
-          <AppSidebar />
-          <div className='flex flex-1 flex-col'>
-            <Header />
-            <main className='flex flex-1 flex-col p-2'>{children}</main>
-          </div>
-        </SidebarProvider>
+        <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+          <SidebarProvider defaultOpen={false}>
+            <AppSidebar />
+            <div className='flex flex-1 flex-col'>
+              <Header />
+              <main className='flex flex-1 flex-col p-2'>{children}</main>
+            </div>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

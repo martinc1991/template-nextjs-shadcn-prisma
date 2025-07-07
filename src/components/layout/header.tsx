@@ -2,6 +2,7 @@
 
 import { AppLinks } from '@/components/layout/app-links'
 import { Logo } from '@/components/layout/logo'
+import { ModeToggle } from '@/components/mode-toggle'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { HEADER_HEIGHT } from '@/config/layout'
 import { useIsMobile } from '@/hooks/use-mobile'
@@ -18,7 +19,10 @@ export default function Header() {
         </Link>
         {!isMobile && <AppLinks />}
       </div>
-      {isMobile && <SidebarTrigger />}
+      <div className='flex items-center gap-4'>
+        <ModeToggle />
+        {isMobile && <SidebarTrigger />}
+      </div>
     </div>
   )
 }
