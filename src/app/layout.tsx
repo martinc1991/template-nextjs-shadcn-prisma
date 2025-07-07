@@ -18,7 +18,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <AppSidebar />
           <div className='flex flex-1 flex-col'>
             <Header />
-            <main className='flex flex-1 flex-col bg-amber-200 p-2'>{children}</main>
+            <main className='flex flex-1 flex-col p-2'>{children}</main>
           </div>
         </SidebarProvider>
       </body>
