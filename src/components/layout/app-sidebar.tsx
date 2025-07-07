@@ -6,7 +6,7 @@ import Link from 'next/link'
 export default function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarHeader className='items-center justify-center h-16'>
+      <SidebarHeader className='items-center justify-center'>
         <Link href='/'>
           <Logo />
         </Link>

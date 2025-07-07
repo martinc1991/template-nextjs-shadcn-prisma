@@ -12,7 +12,7 @@ export default function Header() {
 
   return (
     <div className='sticky top-0 z-50 flex items-center justify-between px-2' style={{ height: HEADER_HEIGHT }}>
-      <div className='flex items-center gap-6 flex-1'>
+      <div className='flex flex-1 items-center gap-6'>
         <Link href='/'>
           <Logo />
         </Link>
