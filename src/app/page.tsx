@@ -1,30 +1,17 @@
+import { getUsers } from '@/actions/get-users'
 import { PageWrapper } from '@/components/layout/page-wrapper'
-import { Button } from '@/components/ui/button'
 
-export default function Home() {
+export default async function Home() {
+  const users = await getUsers()
+
   return (
     <PageWrapper>
       <span>Home page</span>
 
-      <div className='flex gap-4'>
-        <Button asChild className='flex flex-col items-center gap-4 sm:flex-row'>
-          <a
-            href='https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Deploy now
-          </a>
-        </Button>
-        <Button asChild>
-          <a
-            href='https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app'
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            Read our docs
-          </a>
-        </Button>
+      <div className='mt-4 flex flex-col gap-4'>
+        {users.map((user) => (
+          <span key={user.email}>{user.email}</span>
+        ))}
       </div>
     </PageWrapper>
   )
