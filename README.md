@@ -1,36 +1,211 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js + Shadcn/ui + Prisma Template
 
-## Getting Started
+A modern, production-ready Next.js template with TypeScript, Tailwind CSS, Shadcn/ui components, Prisma ORM, and PostgreSQL database.
 
-First, run the development server:
+## 🚀 Features
+
+- **Next.js 15** with App Router (SSR)
+- **TypeScript** for type safety
+- **Tailwind CSS v4** for styling
+- **Shadcn/ui** for beautiful, accessible components
+- **Prisma** for type-safe database operations
+- **PostgreSQL** database with Docker
+- **Dark/Light mode** support
+- **ESLint & Prettier** for code quality
+- **Responsive sidebar** layout
+- **Auto database migrations** on build
+
+## 📋 Prerequisites
+
+- Node.js 18+
+- pnpm (recommended) or npm
+- Docker (for local database)
+- Git
+
+## 🛠️ Getting Started
+
+### 1. Clone the template
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <your-repo-url>
+cd template-nextjs-shadcn-prisma
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Set up environment variables
 
-## Learn More
+Create a `.env` file in the root directory:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/postgres"
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Start the development server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm dev
+```
 
-## Deploy on Vercel
+This command will:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Start PostgreSQL database using Docker
+- Run database migrations
+- Start the Next.js development server
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) to see your application.
+
+## 🗄️ Database Management
+
+### Available Commands
+
+```bash
+# Generate Prisma client
+pnpm db:generate
+
+# Create and apply new migration
+pnpm db:migrate
+
+# Push schema changes directly (development only)
+pnpm db:push
+
+# Reset database and apply all migrations
+pnpm db:reset
+
+# Open Prisma Studio (database GUI)
+pnpm studio
+```
+
+### Database Schema
+
+The template includes a basic `User` model. You can extend it in `prisma/schema.prisma`:
+
+```prisma
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+```
+
+## 🎨 UI Components
+
+### Adding Shadcn/ui Components
+
+```bash
+pnpm ui:add
+```
+
+## 🚀 Deployment
+
+### Deploy to Vercel
+
+1. **Push your code to GitHub**
+
+2. **Connect to Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Import your GitHub repository
+   - Vercel will automatically detect it's a Next.js project
+
+3. **Configure Environment Variables**
+   - In your Vercel project settings, add:
+
+   ```
+   DATABASE_URL=your-production-database-url
+   ```
+
+4. **Set up Database**
+   - **Option A: Vercel Postgres** (Recommended)
+     - Add Vercel Postgres integration in your project
+     - Vercel will automatically set the `DATABASE_URL`
+   - **Option B: External Database**
+     - Use services like Supabase, PlanetScale, or Railway
+     - Add the connection string to environment variables
+
+5. **Deploy**
+   - Vercel will automatically run:
+     - `prebuild`: Database migrations
+     - `build`: Next.js build
+   - Your app will be live at `https://your-project.vercel.app`
+
+## 📁 Project Structure
+
+```
+├── prisma/
+│   ├── schema.prisma      # Database schema
+│   ├── migrations/        # Database migrations
+│   └── seed.ts           # Database seeding
+├── src/
+│   ├── app/              # Next.js App Router
+│   ├── components/       # React components
+│   │   ├── ui/          # Shadcn/ui components
+│   │   └── layout/      # Layout components
+│   ├── lib/             # Utility functions
+│   └── actions/         # Server actions
+├── public/              # Static assets
+└── docker-compose.yml   # Local database setup
+```
+
+## 🔧 Configuration
+
+### Tailwind CSS
+
+Configuration: `tailwind.config.ts`
+
+- Custom colors and themes
+- Dark mode support
+- Responsive breakpoints
+
+### Prisma
+
+Configuration: `prisma/schema.prisma`
+
+- Database connection
+- Model definitions
+- Client generation settings
+
+### Next.js
+
+Configuration: `next.config.ts`
+
+- Build optimizations
+- Environment variables
+- Custom webpack config
+
+## 📚 Useful Resources
+
+### Documentation
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Prisma Documentation](https://www.prisma.io/docs)
+- [Shadcn/ui Documentation](https://ui.shadcn.com)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+
+### Database Providers
+
+- [Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres)
+- [Supabase](https://supabase.com)
+- [PlanetScale](https://planetscale.com)
+- [Railway](https://railway.app)
+
+### Deployment Guides
+
+- [Vercel Deployment](https://vercel.com/docs/deployments)
+- [Next.js Deployment](https://nextjs.org/docs/deployment)
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📄 License
+
+This template is open source and available under the [MIT License](LICENSE).
