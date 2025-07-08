@@ -42,7 +42,7 @@ pnpm install
 Create a `.env` file in the root directory:
 
 ```env
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/postgres"
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
 ```
 
 ### 4. Start the development server
@@ -97,6 +97,8 @@ model User {
 
 ### Adding Shadcn/ui Components
 
+To add a component, run the following command:
+
 ```bash
 pnpm ui:add
 ```
@@ -113,25 +115,14 @@ pnpm ui:add
    - Vercel will automatically detect it's a Next.js project
 
 3. **Configure Environment Variables**
-   - In your Vercel project settings, add:
+   - In your Vercel project settings, add your PostgreSQL connection string as `DATABASE_URL`:
+     ```
+     DATABASE_URL=your-production-connection-string
+     ```
 
-   ```
-   DATABASE_URL=your-production-database-url
-   ```
-
-4. **Set up Database**
-   - **Option A: Vercel Postgres** (Recommended)
-     - Add Vercel Postgres integration in your project
-     - Vercel will automatically set the `DATABASE_URL`
-   - **Option B: External Database**
-     - Use services like Supabase, PlanetScale, or Railway
-     - Add the connection string to environment variables
-
-5. **Deploy**
-   - Vercel will automatically run:
-     - `prebuild`: Database migrations
-     - `build`: Next.js build
-   - Your app will be live at `https://your-project.vercel.app`
+4. **Deploy**
+   - Click "Deploy" in the Vercel dashboard.
+   - Vercel will automatically run your build and database migrations.
 
 ## 📁 Project Structure
 
@@ -186,12 +177,9 @@ Configuration: `next.config.ts`
 - [Shadcn/ui Documentation](https://ui.shadcn.com)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 
-### Database Providers
+### Database
 
-- [Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres)
-- [Supabase](https://supabase.com)
-- [PlanetScale](https://planetscale.com)
-- [Railway](https://railway.app)
+- Any PostgreSQL database service like [Vercel Postgres](https://vercel.com/docs/storage/vercel-postgres), [Supabase](https://supabase.com), [PlanetScale](https://planetscale.com) or [Neon](https://neon.com/)
 
 ### Deployment Guides
 
@@ -203,8 +191,7 @@ Configuration: `next.config.ts`
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+4. Submit a pull request
 
 ## 📄 License
 
